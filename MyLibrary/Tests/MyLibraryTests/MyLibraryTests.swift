@@ -6,23 +6,39 @@ final class MyLibraryTests: XCTestCase {
         // Given
         let myLibrary = MyLibrary()
         let number = 8
+        let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
+        var isLuckyNumber: Bool?
 
         // When
-        let isLuckyNumber = myLibrary.isLucky(number)
+        myLibrary.isLucky(number, completion: { lucky in
+            isLuckyNumber = lucky
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
 
         // Then
-        XCTAssertTrue(isLuckyNumber)
+        XCTAssertNotNil(isLuckyNumber)
+        XCTAssert(isLuckyNumber == true)
     }
 
     func testIsNotLucky() throws {
         // Given
         let myLibrary = MyLibrary()
         let number = 7
+        let expectation = XCTestExpectation(description: "We asked about the number 7 and heard back 🌲")
+        var isLuckyNumber: Bool?
 
         // When
-        let isLuckyNumber = myLibrary.isLucky(number)
+        myLibrary.isLucky(number, completion: { lucky in
+            isLuckyNumber = lucky
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
 
         // Then
-        XCTAssertFalse(isLuckyNumber)
+        XCTAssertNotNil(isLuckyNumber)
+        XCTAssert(isLuckyNumber == false)
     }
 }
