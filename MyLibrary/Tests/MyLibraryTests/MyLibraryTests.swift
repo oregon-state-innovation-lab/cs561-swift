@@ -13,4 +13,16 @@ final class MyLibraryTests: XCTestCase {
         // Then
         XCTAssertTrue(isLuckyNumber)
     }
+
+    func testIsNotLucky() throws {
+        // Given
+        let myLibrary = MyLibrary()
+        let number = 7
+
+        // When
+        let isLuckyNumber = myLibrary.isLucky(number)
+
+        // Then
+        XCTAssertFalse(isLuckyNumber)
+    }
 }
