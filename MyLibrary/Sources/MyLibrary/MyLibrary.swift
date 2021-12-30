@@ -13,6 +13,7 @@ public class MyLibrary {
         // Check the simple case first: 3, 5 and 8 are automatically lucky.
         if number == 3 || number == 5 || number == 8 {
             completion(true)
+            return
         }
 
         // Fetch the current weather from the backend.
