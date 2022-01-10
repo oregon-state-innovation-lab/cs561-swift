@@ -1,4 +1,4 @@
-public class MyLibrary {
+public class MyLibrary { //add comments
     private let weatherService: WeatherService
 
     /// The class's initializer.
