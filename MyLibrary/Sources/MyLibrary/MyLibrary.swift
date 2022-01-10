@@ -1,3 +1,4 @@
+// This class is responsible for a weather service
 public class MyLibrary {
     private let weatherService: WeatherService
 
