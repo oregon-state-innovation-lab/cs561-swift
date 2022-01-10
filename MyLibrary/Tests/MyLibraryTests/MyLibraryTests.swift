@@ -101,4 +101,9 @@ final class MyLibraryTests: XCTestCase {
         XCTAssertNil(isLuckyNumber)
     }
 
+    //Trying the First PR
+    public func PRTry() throws {
+        //Do Nothing
+		//Try2
+    }
 }
