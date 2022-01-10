@@ -42,3 +42,5 @@ public class MyLibrary {
         return String(lhs).contains(rhs)
     }
 }
+
+//Absolutely useless comment. But as everything is this file seems to be correct, and i don't want to start Docker at the moment to test it again, this is all I have to contribute.
