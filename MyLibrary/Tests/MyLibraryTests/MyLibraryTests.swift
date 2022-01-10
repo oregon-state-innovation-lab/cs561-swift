@@ -1,5 +1,5 @@
 import XCTest
-@testable import MyLibrary
+import MyLibrary
 
 final class MyLibraryTests: XCTestCase {
     func testIsLuckyBecauseWeAlreadyHaveLuckyNumber() throws {
