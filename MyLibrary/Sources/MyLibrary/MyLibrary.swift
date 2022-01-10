@@ -16,6 +16,7 @@ public class MyLibrary {
             return
         }
 
+        // TODO: test for 3, 5 and another number
         // Fetch the current weather from the backend.
         // If the current temperature, in Farenheit, contains an 8, then that's lucky.
         weatherService.getTemperature { response in
