@@ -40,5 +40,9 @@ public class MyLibrary {
     ///   `contains(557, "8")` would return `false` because 577 does not contain 8.
     private func contains(_ lhs: Int, _ rhs: Character) -> Bool {
         return String(lhs).contains(rhs)
+        /// 
     }
 }
+
+
+///New Line
