@@ -1,5 +1,6 @@
 import XCTest
 import MyLibrary
+@testable import Weather
 
 final class MyLibraryTests: XCTestCase {
     func testIsLuckyBecauseWeAlreadyHaveLuckyNumber() throws {
@@ -102,3 +103,4 @@ final class MyLibraryTests: XCTestCase {
     }
 
 }
+
