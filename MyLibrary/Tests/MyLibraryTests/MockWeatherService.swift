@@ -1,5 +1,5 @@
 import Alamofire
-import MyLibrary
+@testable import MyLibrary
 
 class MockWeatherService: WeatherService {
     private var shouldSucceed: Bool
