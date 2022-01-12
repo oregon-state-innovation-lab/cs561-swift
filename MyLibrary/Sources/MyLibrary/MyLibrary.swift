@@ -12,7 +12,7 @@ public class MyLibrary {
     public func isLucky(_ number: Int, completion: @escaping (Bool?) -> Void) {
         // Check the simple case first: 3, 5 and 8 are automatically lucky.
         if number == 3 || number == 5 || number == 8 {
-            completion(true)
+            completion(true)//lucky
             return
         }
 
