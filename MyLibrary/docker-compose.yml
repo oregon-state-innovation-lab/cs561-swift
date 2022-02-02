@@ -1,0 +1,7 @@
+services:
+  dev:
+    image: "swiftlang/swift:nightly-focal"
+    volumes:
+      - /Users/code/labs/swift:/code
+    environment:
+      - USER=supreeth
