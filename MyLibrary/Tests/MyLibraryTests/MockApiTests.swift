@@ -6,7 +6,7 @@ final class MockAPITests: XCTestCase {
     func testWeather() throws {
         let myLibrary = MyLibrary()
 
-        let expectation = XCTestExpectation(description: "We asked about the temperature and heard back 🎄")
+        let expectation = XCTestExpectation(description: "Response received")
         var myTemperature : Int? = nil
 
         // When
