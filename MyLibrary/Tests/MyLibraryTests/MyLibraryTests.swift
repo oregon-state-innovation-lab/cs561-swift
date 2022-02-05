@@ -157,16 +157,18 @@ final class MyLibraryTests: XCTestCase {
         // Given
         let myLibrary = MyLibrary()
         let expectation = XCTestExpectation(description: "We asked about the number 7 and heard back 🎄")
-        var temperature: Int?
+        var message: String?
 
         // When
-        myLibrary.getTemp(completion: { temp in
-            temperature = temp
+        myLibrary.getMessage(completion: { msg in
+            message = msg
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 5)
 
+
         // Then
-        XCTAssert(temperature == 45)
+
+        XCTAssert(message == "Hello world!")
     }
 }

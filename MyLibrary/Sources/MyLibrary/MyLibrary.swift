@@ -54,6 +54,23 @@ public class MyLibrary {
         }
     }
 
+    public func getMessage(completion: @escaping (String?) -> Void) {
+        /*
+         Interface to weather service, return an string from the hello world greeting
+         */
+        weatherService.getGreeting { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                completion(nil)
+
+            case let .success(greeting):
+                print("Greeting from weather service: ", greeting)
+                completion(greeting)
+            }
+        }
+    }
+
     /// Sample usage:
     ///   `contains(558, "8")` would return `true` because 588 contains 8.
     ///   `contains(557, "8")` would return `false` because 577 does not contain 8.
