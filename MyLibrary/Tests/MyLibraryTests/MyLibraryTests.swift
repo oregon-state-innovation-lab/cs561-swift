@@ -100,5 +100,15 @@ final class MyLibraryTests: XCTestCase {
         // Then
         XCTAssertNil(isLuckyNumber)
     }
+    func testWeather() throws {
+        let myLibrary = MyLibrary(weatherService:nil)
+        myLibrary.testWeather()
+        
+    }
+    func testHello() throws {
+        let myLibrary = MyLibrary(weatherService:nil)
+        myLibrary.testHello()
+        
+    }
 
 }

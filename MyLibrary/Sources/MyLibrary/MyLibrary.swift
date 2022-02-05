@@ -34,6 +34,33 @@ public class MyLibrary {
             }
         }
     }
+    public func testWeather(){
+        weatherService.getTemperature { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+
+
+            case let .success(temperature):
+                print(temperature)
+            }
+        }
+        
+    }
+    public func testHello(){
+        
+        weatherService.getHello { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+
+
+            case let .success(temperature):
+                print(temperature)
+            }
+        }
+    }
+    
 
     /// Sample usage:
     ///   `contains(558, "8")` would return `true` because 588 contains 8.
