@@ -6,9 +6,10 @@ public protocol WeatherService {
 }
 
 public class WeatherServiceImpl: WeatherService {
-    let auth_url = "http://localhost:3000/v1/auth/"
-    let url      = "http://localhost:3000/v1/weather/"
-    let hello_url = "http://localhost:3000/v1/hello/"
+    // aws elastic ip: 55.55.131.241
+    let auth_url = "http://52.55.131.241:3000/v1/auth/"
+    let url      = "http://52.55.131.241:3000/v1/weather/"
+    let hello_url = "http://52.55.131.241:3000/v1/hello/"
     //let url = "https://cs561-assignment3-pacey.s3.us-west-1.amazonaws.com/index.html"
 
     let user_param = ["username": "joe", "password": "my_password2"]
