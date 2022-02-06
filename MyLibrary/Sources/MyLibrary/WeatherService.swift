@@ -11,11 +11,16 @@ public class WeatherServiceImpl: WeatherService {
     let hello_url = "http://localhost:3000/v1/hello/"
     //let url = "https://cs561-assignment3-pacey.s3.us-west-1.amazonaws.com/index.html"
 
+    let user_param = ["username": "joe", "password": "my_password2"]
+
+
     public init(){}
 
     public func getTemperature(completion: @escaping (_ response: Result<Int /* Temperature */, Error>) -> Void) {
         // first do auth
-        AF.request(auth_url, method: .post).validate(statusCode: 200..<300).responseDecodable(of: Token.self) { response in
+        let user_param = ["username": "joe", "password": "my_password2"]
+
+        AF.request(auth_url, method: .post, parameters: user_param).validate(statusCode: 200..<300).responseDecodable(of: Token.self) { response in
         switch response.result {
             case let .success(token):
                 // parse access token from auth
@@ -42,7 +47,9 @@ public class WeatherServiceImpl: WeatherService {
 
     public func getGreeting(completion: @escaping (_ response: Result<String /* Message */, Error>) -> Void) {
 
-        AF.request(auth_url, method: .post).validate(statusCode: 200..<300).responseDecodable(of: Token.self) { response in
+
+
+        AF.request(auth_url, method: .post, parameters: user_param).validate(statusCode: 200..<300).responseDecodable(of: Token.self) { response in
             switch response.result {
             case let .success(token):
                 // get access token from auth
