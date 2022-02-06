@@ -10,10 +10,9 @@ public class WeatherServiceImpl: WeatherService {
     let auth_url = "http://52.55.131.241:3000/v1/auth/"
     let url      = "http://52.55.131.241:3000/v1/weather/"
     let hello_url = "http://52.55.131.241:3000/v1/hello/"
-    //let url = "https://cs561-assignment3-pacey.s3.us-west-1.amazonaws.com/index.html"
 
+    // user params for auth login
     let user_param = ["username": "joe", "password": "my_password2"]
-
 
     public init(){}
 
@@ -95,8 +94,6 @@ private struct Hello: Decodable {
         let greeting: String
     }
 }
-
-
 
 private struct Weather: Decodable {
     let main: Main
