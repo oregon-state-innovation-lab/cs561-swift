@@ -46,9 +46,6 @@ public class WeatherServiceImpl: WeatherService {
     }
 
     public func getGreeting(completion: @escaping (_ response: Result<String /* Message */, Error>) -> Void) {
-
-
-
         AF.request(auth_url, method: .post, parameters: user_param).validate(statusCode: 200..<300).responseDecodable(of: Token.self) { response in
             switch response.result {
             case let .success(token):
