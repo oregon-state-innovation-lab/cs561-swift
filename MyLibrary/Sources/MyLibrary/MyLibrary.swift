@@ -35,10 +35,30 @@ public class MyLibrary {
         }
     }
 
-    /// Sample usage:
-    ///   `contains(558, "8")` would return `true` because 588 contains 8.
-    ///   `contains(557, "8")` would return `false` because 577 does not contain 8.
-    private func contains(_ lhs: Int, _ rhs: Character) -> Bool {
-        return String(lhs).contains(rhs)
+    public func isWeather(completion: @escaping (Bool?) -> Void) {
+        // Fetch the current weather from the backend.
+        weatherService.getTemperature { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                completion(nil)
+            case let .success(temperature):
+                print(temperature)
+                completion(true)
+            }
+        }
+    }
+
+    public func isGreeting(completion: @escaping (Bool?) -> Void) {
+        weatherService.getGreeting { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                completion(nil)
+            case let .success(message):
+                print(message)
+                completion(true)
+            }
+        }
     }
 }
