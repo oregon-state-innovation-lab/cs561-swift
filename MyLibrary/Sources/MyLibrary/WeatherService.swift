@@ -1,31 +1,56 @@
-import Alamofire
+public class MyLibrary {
+    private let weatherService: WeatherService
 
-public protocol WeatherService {
-    func getTemperature(completion: @escaping (_ response: Result<Int /* Temperature */, Error>) -> Void)
-}
+    /// The class's initializer.
+    ///
+    /// Whenever we call the `MyLibrary()` constructor to instantiate a `MyLibrary` instance,
+    /// the runtime then calls this initializer.  The constructor returns after the initializer returns.
+    public init(weatherService: WeatherService? = nil) {
+        self.weatherService = weatherService ?? WeatherServiceImpl()
+    }
 
-class WeatherServiceImpl: WeatherService {
-    let url = "https://api.openweathermap.org/data/2.5/weather?q=corvallis&units=imperial&appid=<INSERT YOUR API KEY HERE>"
+    public func isLucky(_ number: Int, completion: @escaping (Bool?) -> Void) {
+        // Check the simple case first: 3, 5 and 8 are automatically lucky.
+        if number == 3 || number == 5 || number == 8 {
+            completion(true)
+            return
+        }
 
-    func getTemperature(completion: @escaping (_ response: Result<Int /* Temperature */, Error>) -> Void) {
-        AF.request(url, method: .get).validate(statusCode: 200..<300).responseDecodable(of: Weather.self) { response in
-            switch response.result {
-            case let .success(weather):
-                let temperature = weather.main.temp
-                let temperatureAsInteger = Int(temperature)
-                completion(.success(temperatureAsInteger))
-
+        // Fetch the current weather from the backend.
+        // If the current temperature, in Farenheit, contains an 8, then that's lucky.
+        weatherService.getTemperature { response in
+            switch response {
             case let .failure(error):
-                completion(.failure(error))
+                print(error)
+                completion(nil)
+
+            case let .success(temperature):
+                if self.contains(temperature, "8") {
+                    completion(true)
+                } else {
+                    let isLuckyNumber = self.contains(temperature, "8")
+                    completion(isLuckyNumber)
+                }
             }
         }
     }
-}
 
-private struct Weather: Decodable {
-    let main: Main
+    public func isMsgReceived(completion: @escaping (Bool?) -> Void) {
+        // Fetch the welcome message from the backend.
+        weatherService.getMessage { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                completion(nil)
 
-    struct Main: Decodable {
-        let temp: Double
+            case let .success(message):
+                
+                    completion(true)
+            }
+        }
+    }
+
+    private func contains(_ lhs: Int, _ rhs: Character) -> Bool {
+        return String(lhs).contains(rhs)
     }
 }
