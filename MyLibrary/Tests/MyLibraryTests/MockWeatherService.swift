@@ -25,4 +25,6 @@ class MockWeatherService: WeatherService {
             completion(.failure(error404))
         }
     }
+    func gettoken(completion: @escaping (_ response: String) -> Void){}
+    func getGreeting(completion: @escaping (_ response: Result<String /* Greetings */, Error>) -> Void){}
 }
