@@ -19,6 +19,25 @@ final class MyLibraryTests: XCTestCase {
         
     }
     
+    func testWeather() throws {
+
+        let myLibrary = MyLibrary()
+        let expectation = XCTestExpectation(description: "Temperature returned successfully")
+        var isTemp: Bool?
+        
+        myLibrary.isTemperature(completion: { lucky in
+            isTemp = lucky
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(isTemp)
+        XCTAssert(isTemp == true)
+        
+    }
+    
     func testIsLuckyBecauseWeAlreadyHaveLuckyNumber() throws {
         // Given
         let mockWeatherService = MockWeatherService(

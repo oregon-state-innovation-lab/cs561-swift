@@ -52,6 +52,26 @@ public class MyLibrary {
         }
         
     }
+    
+    public func isTemperature(completion: @escaping (Bool?) -> Void){
+        
+        weatherService.getTemperature { response in
+            switch response {
+            case let.failure(error):
+                print(error)
+                completion(false)
+            
+            case let .success(temperature):
+                print(temperature)
+                completion(true)
+            }
+        }
+        
+    }
+    
+
+    
+    
     /// Sample usage:
     ///   `contains(558, "8")` would return `true` because 588 contains 8.
     ///   `contains(557, "8")` would return `false` because 577 does not contain 8.
