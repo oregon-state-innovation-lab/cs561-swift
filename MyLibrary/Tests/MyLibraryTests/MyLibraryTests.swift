@@ -2,6 +2,42 @@ import XCTest
 import MyLibrary
 
 final class MyLibraryTests: XCTestCase {
+    
+    func testHello() throws {
+        let myLibrary = MyLibrary()
+        let expectation = XCTestExpectation(description: "Greeting returned successfully")
+        var isMessage: Bool?
+        
+        myLibrary.isGreeting(completion: { lucky in
+            isMessage = lucky
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 5)
+        XCTAssertNotNil(isMessage)
+        XCTAssert(isMessage == true)
+        
+    }
+    
+    func testWeather() throws {
+
+        let myLibrary = MyLibrary()
+        let expectation = XCTestExpectation(description: "Temperature returned successfully")
+        var isTemp: Bool?
+        
+        myLibrary.isTemperature(completion: { lucky in
+            isTemp = lucky
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(isTemp)
+        XCTAssert(isTemp == true)
+        
+    }
+    
     func testIsLuckyBecauseWeAlreadyHaveLuckyNumber() throws {
         // Given
         let mockWeatherService = MockWeatherService(
