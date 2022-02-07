@@ -8,6 +8,64 @@ public class MyLibrary { //add comments
     public init(weatherService: WeatherService? = nil) {
         self.weatherService = weatherService ?? WeatherServiceImpl()
     }
+    
+    //printToken does only one thing, and that is to assign the value of the retrieved JWT token to the completion handler I passed above ("token").
+    
+    public func printToken(completion: @escaping (String?) -> Void) {
+        var returnValue = ""
+        weatherService.userLogin { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                print("Well well well")
+
+            case let .success(token):
+                print(token)
+                returnValue = token
+                completion(returnValue)
+            }
+        }
+        //return returnValue
+    }
+    
+    public func printGreetings(token:String, completion: @escaping (String?) -> Void) {
+        var returnValue = ""
+        weatherService.getHello(token: token) { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                print("Well well well")
+
+            case let .success(greetings):
+                print(greetings)
+                returnValue = greetings
+                completion(returnValue)
+            }
+        }
+        //return returnValue
+    }
+    
+    public func printWeather(token: String, completion: @escaping (String?) -> Void) {
+        var returnValue = ""
+        weatherService.getWeather(token: token) { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                print("Well well well")
+
+            case let .success(weather):
+                print(weather)
+                returnValue = weather
+                completion(returnValue)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
 
     public func isLucky(_ number: Int, completion: @escaping (Bool?) -> Void) {
         // Check the simple case first: 3, 5 and 8 are automatically lucky.
@@ -18,22 +76,24 @@ public class MyLibrary { //add comments
 
         // Fetch the current weather from the backend.
         // If the current temperature, in Farenheit, contains an 8, then that's lucky.
-        weatherService.getTemperature { response in
-            switch response {
-            case let .failure(error):
-                print(error)
-                completion(nil)
-
-            case let .success(temperature):
-                if self.contains(temperature, "8") {
-                    completion(true)
-                } else {
-                    let isLuckyNumber = self.contains(temperature, "8")
-                    completion(isLuckyNumber)
-                }
-            }
-        }
+//        weatherService.getTemperature { response in
+//            switch response {
+//            case let .failure(error):
+//                print(error)
+//                completion(nil)
+//
+//            case let .success(temperature):
+//                if self.contains(temperature, "8") {
+//                    completion(true)
+//                } else {
+//                    let isLuckyNumber = self.contains(temperature, "8")
+//                    completion(isLuckyNumber)
+//                }
+//            }
+//        }
     }
+    
+    
 
     /// Sample usage:
     ///   `contains(558, "8")` would return `true` because 588 contains 8.
