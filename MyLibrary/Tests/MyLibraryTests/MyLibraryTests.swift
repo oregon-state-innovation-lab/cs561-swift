@@ -100,5 +100,47 @@ final class MyLibraryTests: XCTestCase {
         // Then
         XCTAssertNil(isLuckyNumber)
     }
+    func testWeather() throws {
+        // Given
+
+
+        let myLibrary = MyLibrary()
+        let number = 0
+        let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
+        var isLuckyNumber: Bool?
+
+        // When
+        myLibrary.isLucky(number, completion: { lucky in
+            isLuckyNumber = lucky
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(isLuckyNumber)
+        XCTAssert(isLuckyNumber == true)
+    }
+    func testHello() throws {
+        // Given
+
+
+        let myLibrary = MyLibrary()
+        let greeting = "Hello it's Nithish"
+        let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
+        var isLuckyNumber: Bool?
+
+        // When
+        myLibrary.isGreetingLucky(greeting, completion: { lucky in
+            isLuckyNumber = lucky
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(isLuckyNumber)
+        XCTAssert(isLuckyNumber == true)
+    }
 
 }
