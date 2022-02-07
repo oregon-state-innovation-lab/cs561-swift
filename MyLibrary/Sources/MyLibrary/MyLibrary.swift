@@ -34,7 +34,26 @@ public class MyLibrary {
             }
         }
     }
-///nithish
+    public func isGreetingLucky(_ passed_greeting: String, completion: @escaping (Bool?) -> Void) {
+
+        // Fetch the greeting from the backend.
+        // If the greeting is the same as the one passed, then that's lucky.
+        weatherService.getGreeting { response in
+            switch response {
+            case let .failure(error):
+                print(error)
+                completion(nil)
+
+            case let .success(greeting):
+                if greeting == passed_greeting {
+                    completion(true)
+                } else {
+                    let isLuckyGreeting = greeting == passed_greeting
+                    completion(isLuckyGreeting)
+                }
+            }
+        }
+    }
     /// Sample usage:
     ///   `contains(558, "8")` would return `true` because 588 contains 8.
     ///   `contains(557, "8")` would return `false` because 577 does not contain 8.
