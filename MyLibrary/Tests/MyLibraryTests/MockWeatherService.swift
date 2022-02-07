@@ -2,6 +2,10 @@ import Alamofire
 import MyLibrary
 
 class MockWeatherService: WeatherService {
+    func getGreeting(completion: @escaping (Result<String, Error>) -> Void) {
+        
+    }
+    
     private var shouldSucceed: Bool
     private var shouldReturnTemperatureWithAnEight: Bool
 
