@@ -2,39 +2,29 @@ import XCTest
 import MyLibrary
 
 final class MyLibraryTests: XCTestCase {
-    func testIsLuckyBecauseWeAlreadyHaveLuckyNumber() throws {
+    func testHello() throws {
         // Given
-        let mockWeatherService = MockWeatherService(
-            shouldSucceed: true,
-            shouldReturnTemperatureWithAnEight: false
-        )
 
-        let myLibrary = MyLibrary(weatherService: mockWeatherService)
-        let number = 8
-        let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
-        var isLuckyNumber: Bool?
+        let myLibrary = MyLibrary()
+        let expectation = XCTestExpectation(description: "Ping the welcome page but heard back 🎄")
+        var msgReceived: Bool?
 
         // When
-        myLibrary.isLucky(number, completion: { lucky in
-            isLuckyNumber = lucky
+        myLibrary.isMsgReceived(completion: { lucky in
+            msgReceived = lucky
             expectation.fulfill()
         })
 
         wait(for: [expectation], timeout: 5)
 
         // Then
-        XCTAssertNotNil(isLuckyNumber)
-        XCTAssert(isLuckyNumber == true)
+        XCTAssertNotNil(msgReceived)
+        XCTAssert(msgReceived == true)
     }
 
-    func testIsLuckyBecauseWeatherHasAnEight() throws {
+    func testWeather() throws {
         // Given
-        let mockWeatherService = MockWeatherService(
-            shouldSucceed: true,
-            shouldReturnTemperatureWithAnEight: true
-        )
-
-        let myLibrary = MyLibrary(weatherService: mockWeatherService)
+        let myLibrary = MyLibrary()
         let number = 0
         let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
         var isLuckyNumber: Bool?
@@ -51,7 +41,7 @@ final class MyLibraryTests: XCTestCase {
         XCTAssertNotNil(isLuckyNumber)
         XCTAssert(isLuckyNumber == true)
     }
-
+/*
     func testIsNotLucky() throws {
         // Given
         let mockWeatherService = MockWeatherService(
@@ -100,5 +90,5 @@ final class MyLibraryTests: XCTestCase {
         // Then
         XCTAssertNil(isLuckyNumber)
     }
-
+*/
 }
