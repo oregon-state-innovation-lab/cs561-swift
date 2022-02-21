@@ -101,4 +101,67 @@ final class MyLibraryTests: XCTestCase {
         XCTAssertNil(isLuckyNumber)
     }
 
+    func testAuth() throws {
+        // Given
+
+        let myLibrary = MyLibrary()
+        let expectation = XCTestExpectation(description: "We asked about the access token and get jwt token")
+        var jwt : String?
+
+        // When
+        myLibrary.getAuth(completion: { token in
+            print("================")
+            print(token as Any)
+            jwt = token
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(jwt)
+    }
+    
+    func testv1Weather() throws {
+        // Given
+
+        let myLibrary = MyLibrary()
+        let expectation = XCTestExpectation(description: "We asked about weather data by using jwt token")
+        var temp : String?
+
+        // When
+        myLibrary.getWeather(completion: { res in
+            print("================Corvallis temperature===============")
+            print(res as Any)
+            temp = res
+            print("===================finished test====================")
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(temp)
+    }
+    
+    func testv1Hello() throws {
+        // Given
+
+        let myLibrary = MyLibrary()
+        let expectation = XCTestExpectation(description: "We asked about weather data by using jwt token")
+        var message : String?
+
+        // When
+        myLibrary.getHello(completion: { res in
+            print("================message===============")
+            print(res as Any)
+            message = res
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(message)
+    }
 }
