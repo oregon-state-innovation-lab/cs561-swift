@@ -1,28 +1,149 @@
-import Alamofire
+import XCTest
 import MyLibrary
 
-class MockWeatherService: WeatherService {
-    private var shouldSucceed: Bool
-    private var shouldReturnTemperatureWithAnEight: Bool
+final class MyLibraryTests: XCTestCase {
+//    func testIsLuckyBecauseWeAlreadyHaveLuckyNumber() throws {
+//        // Given
+//        let mockWeatherService = MockWeatherService(
+//            shouldSucceed: true,
+//            shouldReturnTemperatureWithAnEight: false
+//        )
+//
+//        let myLibrary = MyLibrary(weatherService: mockWeatherService)
+//        let number = 8
+//        let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
+//        var isLuckyNumber: Bool?
+//
+//        // When
+//        myLibrary.isLucky(number, completion: { lucky in
+//            isLuckyNumber = lucky
+//            expectation.fulfill()
+//        })
+//
+//        wait(for: [expectation], timeout: 5)
+//
+//        // Then
+//        XCTAssertNotNil(isLuckyNumber)
+//        XCTAssert(isLuckyNumber == true)
+//    }
+//
+//    func testIsLuckyBecauseWeatherHasAnEight() throws {
+//        // Given
+//        let mockWeatherService = MockWeatherService(
+//            shouldSucceed: true,
+//            shouldReturnTemperatureWithAnEight: true
+//        )
+//
+//        let myLibrary = MyLibrary(weatherService: mockWeatherService)
+//        let number = 0
+//        let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
+//        var isLuckyNumber: Bool?
+//
+//        // When
+//        myLibrary.isLucky(number, completion: { lucky in
+//            isLuckyNumber = lucky
+//            expectation.fulfill()
+//        })
+//
+//        wait(for: [expectation], timeout: 5)
+//
+//        // Then
+//        XCTAssertNotNil(isLuckyNumber)
+//        XCTAssert(isLuckyNumber == true)
+//    }
+//
+//    func testIsNotLucky() throws {
+//        // Given
+//        let mockWeatherService = MockWeatherService(
+//            shouldSucceed: true,
+//            shouldReturnTemperatureWithAnEight: false
+//        )
+//
+//        let myLibrary = MyLibrary(weatherService: mockWeatherService)
+//        let number = 7
+//        let expectation = XCTestExpectation(description: "We asked about the number 7 and heard back 🌲")
+//        var isLuckyNumber: Bool?
+//
+//        // When
+//        myLibrary.isLucky(number, completion: { lucky in
+//            isLuckyNumber = lucky
+//            expectation.fulfill()
+//        })
+//
+//        wait(for: [expectation], timeout: 5)
+//
+//        // Then
+//        XCTAssertNotNil(isLuckyNumber)
+//        XCTAssert(isLuckyNumber == false)
+//    }
+//
+//    func testIsNotLuckyBecauseServiceCallFails() throws
+//    {
+//        // Given
+//        let mockWeatherService = MockWeatherService(
+//            shouldSucceed: false,
+//            shouldReturnTemperatureWithAnEight: false
+//        )
+//
+//        let myLibrary = MyLibrary(weatherService: mockWeatherService)
+//        let number = 7
+//        let expectation = XCTestExpectation(description: "We asked about the number 7 but the service call failed 🤖💩")
+//        var isLuckyNumber: Bool?
+//
+//        // When
+//        myLibrary.isLucky(number, completion: { lucky in
+//            isLuckyNumber = lucky
+//            expectation.fulfill()
+//        })
+//
+//        wait(for: [expectation], timeout: 5)
+//
+//        // Then
+//        XCTAssertNil(isLuckyNumber)
+//    }
+    func testMyMockServer() throws {
+        // Given
 
-    init(shouldSucceed: Bool, shouldReturnTemperatureWithAnEight: Bool) {
-        self.shouldSucceed = shouldSucceed
-        self.shouldReturnTemperatureWithAnEight = shouldReturnTemperatureWithAnEight
+
+        let myLibrary = MyLibrary()
+        let number = 8
+        let expectation = XCTestExpectation(description: "Mock server is successful!!!!!!!")
+        var isLuckyNumber: Bool?
+
+        // When
+        myLibrary.isLucky(number, completion: { lucky in
+            isLuckyNumber = lucky
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 5)
+
+        // Then
+        XCTAssertNotNil(isLuckyNumber)
+        XCTAssert(isLuckyNumber == true)
     }
+    
+    
+    func testHello() throws {
+            // Given
 
-    func getTemperature(completion: @escaping (_ response: Result<Int /* Temperature */, Error>) -> Void) {
-        switch (shouldSucceed, shouldReturnTemperatureWithAnEight) {
-        case (true, true):
-            let temperatureInFarenheit = 38
-            completion(.success(temperatureInFarenheit))
+            let myLibrary = MyLibrary()
+            let greeting = "Good morning"
+            let expectation = XCTestExpectation(description: "We asked about the number 8 and heard back 🎄")
+            var isLuckyNumber: Bool?
 
-        case (true, false):
-            let temperatureInFarenheit = 39
-            completion(.success(temperatureInFarenheit))
+            // When
+            myLibrary.isGreetingLucky(greeting, completion: { lucky in
+                isLuckyNumber = lucky
+                expectation.fulfill()
+            })
 
-        case (false, _):
-            let error404 = AFError.explicitlyCancelled
-            completion(.failure(error404))
+            wait(for: [expectation], timeout: 5)
+
+            // Then
+            XCTAssertNotNil(isLuckyNumber)
+            //XCTAssert(isLuckyNumber == true)
         }
-    }
+
+
 }
