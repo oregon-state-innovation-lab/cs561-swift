@@ -8,7 +8,7 @@ public protocol WeatherService {
 
 class WeatherServiceImpl: WeatherService {
     let url = "http://44.202.135.66/:3000/v1/weather"
-    let parameters = ["username": "Abhi", "password": "password"]
+    let parameters = ["username": "Preethi", "password": "password"]
     func getTemperature(completion: @escaping (_ response: Result<Int /* Temperature */, Error>) -> Void) {
         
         AF.request("http://44.202.135.66/:3000/v1/auth", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseDecodable(of: Auth.self) { response in
