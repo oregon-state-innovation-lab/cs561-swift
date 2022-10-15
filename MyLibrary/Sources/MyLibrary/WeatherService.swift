@@ -5,7 +5,7 @@ public protocol WeatherService {
 }
 
 class WeatherServiceImpl: WeatherService {
-    let url = "https://api.openweathermap.org/data/2.5/weather?q=corvallis&units=imperial&appid=<INSERT YOUR API KEY HERE>"
+    let url = "https://api.openweathermap.org/data/2.5/weather?q=corvallis&units=imperial&appid=3591f50bcb5933a821d5aad5d9c130bb"
 
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
