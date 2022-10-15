@@ -17,6 +17,6 @@ final class MyIntegrationTest: XCTestCase {
         // Then
         // Check the temperature is what you expect
         
-        XCTAssertEqual(temp, 82)
+        XCTAssertEqual(temp, 83)
     }
 }
