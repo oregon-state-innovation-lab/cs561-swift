@@ -10,7 +10,17 @@ enum Endpoints: String {
 }
 
 class WeatherServiceImpl: WeatherService {
-    let url = "\(Endpoints.mockService.rawValue)/data/2.5/weather?q=corvallis&units=imperial&appid=my-api-key"
+    private let api = "/data/2.5/weather?q=corvallis&units=imperial&appid=my-api-key"
+    private var url: String
+
+    init (ServiceCallSuccess:Bool? = true) {
+        if ServiceCallSuccess == true {
+            self.url = "\(Endpoints.mockService.rawValue)\(self.api)"
+        }
+        else {
+            self.url = "\(Endpoints.mockService.rawValue)/fail\(self.api)"
+        }
+    }
 
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
