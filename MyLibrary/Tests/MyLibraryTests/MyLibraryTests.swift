@@ -88,5 +88,41 @@ final class MyLibraryTests: XCTestCase {
         XCTAssertNotNil(fakeWeather)
         XCTAssert(fakeWeather.main.temp == 8.7)
     }
+    
+    func testWeatherServiceCallSuccess() async throws{
+        let weatherService = WeatherServiceImpl()
+        var temperature: Int?
 
+        // When
+        temperature = try await weatherService.getTemperature()
+
+        // Then
+        XCTAssertNotNil(temperature)
+    }
+    
+    func testWeatherServiceCallFailed() async throws{
+        let weatherService = WeatherServiceImpl()
+        var temperature: Int?
+
+        // When
+        temperature = try await weatherService.getTemperature()
+
+        // Then
+        XCTAssertNotNil(temperature)
+    }
+    func testWeatherServiceCallFail () async throws {
+        let weatherService = WeatherServiceImpl(ServiceCallSuccess: false)
+        var temperature: Int?
+
+        // When
+        do {
+            temperature = try await weatherService.getTemperature()
+        }
+        catch {
+            temperature = nil
+        }
+
+        // Then
+        XCTAssertNil(temperature)
+    }
 }
