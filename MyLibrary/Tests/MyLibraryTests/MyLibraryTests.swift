@@ -124,12 +124,18 @@ final class MyLibraryTests: XCTestCase {
             XCTAssertEqual(jsonData.main.temp, 286.6)
         }catch{
             XCTAssert(false)
-        }
+        }       
+    }
 
+    func testWeatherService() async throws {
+        let weatherService = WeatherServiceImpl()
 
-
-
+        let temp = try await weatherService.getTemperature()
         
+       
+        XCTAssertNotNil(temp)
+      
+       XCTAssert(temp == 54)
     }
 
 
