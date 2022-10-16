@@ -6,9 +6,11 @@ public protocol WeatherService {
 enum BaseUrl : String {
      case openWeather = "http://api.openweathermap.org"
      case mockServer = "http://localhost:3000/data/2.5/weather"
+
 }
 class WeatherServiceImpl: WeatherService {
     let url = "\(BaseUrl.openWeather.rawValue)/data/2.5/weather?q=London,uk&APPID=46a8fcae97eefaa80aa51dc90461c767"
+
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get).validate(statusCode: 200..<300).responseDecodable(of: Weather.self) { response in
@@ -31,5 +33,4 @@ struct Weather: Decodable {
     struct Main: Decodable {
         let temp: Double
     }
-
 }
