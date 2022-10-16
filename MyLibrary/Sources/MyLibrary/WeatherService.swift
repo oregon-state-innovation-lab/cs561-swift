@@ -5,7 +5,15 @@ public protocol WeatherService {
 }
 
 class WeatherServiceImpl: WeatherService {
-    let url = "https://api.openweathermap.org/data/2.5/weather?q=corvallis&units=imperial&appid=<INSERT YOUR API KEY HERE>"
+    private var url: String
+
+    public init(url: String? = nil) {
+        self.url = "http://localhost:8000/data/2.5/weather/lat=10.12&lon=20&appid=dummy"
+    }
+
+    public init(url: String) {
+        self.url = url
+    }
 
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
@@ -24,7 +32,7 @@ class WeatherServiceImpl: WeatherService {
     }
 }
 
-private struct Weather: Decodable {
+public struct Weather: Decodable {
     let main: Main
 
     struct Main: Decodable {
