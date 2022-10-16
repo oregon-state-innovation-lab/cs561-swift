@@ -117,7 +117,6 @@ final class MyLibraryTests: XCTestCase {
 
         let isLuckyNumber = await myLibrary.isLucky(0)
 
-        // Then, only to avoid warning
         XCTAssert(isLuckyNumber == false)
     }
 }
