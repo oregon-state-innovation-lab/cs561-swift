@@ -1,5 +1,5 @@
 import XCTest
-import MyLibrary
+@testable import MyLibrary
 
 final class MyLibraryTests: XCTestCase {
     func testIsLuckyBecauseWeAlreadyHaveLuckyNumber() async {
@@ -68,5 +68,38 @@ final class MyLibraryTests: XCTestCase {
         // Then
         XCTAssertNil(isLuckyNumber)
     }
+
+    func testWeatherCanSuccsesExtractTemp() 
+    {
+        let json_string = """
+            { 
+                "main" : { 
+                    "temp" : -154.0 
+                }
+            }
+            """
+        let json_data = json_string.data(using: .utf8)!
+        let decoder = JSONDecoder()
+        let test_data = try! decoder.decode(Weather.self, from: json_data)
+
+        XCTAssert(test_data.main.temp == -154.0)
+    }
+
+    func testIntergrationIsLucky() async throws
+    {
+        //Given
+        //setup and assumptions
+        let myService = WeatherServiceImpl()
+
+        //When
+        //the part I am using for testing: temp
+        let temp = try await myService.getTemperature()
+
+        //Then
+        //assertions
+        XCTAssertNotNil(temp)
+        XCTAssertEqual(temp, 284)
+    }
+
 
 }
