@@ -28,6 +28,8 @@ let package = Package(
             dependencies: ["Alamofire"]),
         .testTarget(
             name: "MyLibraryTests",
-            dependencies: ["MyLibrary"]),
-    ]
+            dependencies: ["MyLibrary"],
+            resources:[.process("data.json")]),
+        ]
+    
 )

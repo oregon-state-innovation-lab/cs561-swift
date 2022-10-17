@@ -1,0 +1,8 @@
+services:
+  dev:
+    image: "swiftlang/swift:nightly-focal"
+    volumes:
+      - C:\Users\coe_user\Desktop\Assignments\SEM\A4\cs561-swift:/code
+    environment:
+      - USER=Sai
+      
