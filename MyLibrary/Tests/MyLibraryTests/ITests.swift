@@ -8,7 +8,7 @@ final class ITests: XCTestCase {
         // When
         let is_lucky_number = await my_library.isLucky(0)
         // Then 
-        XCTAssertNotNill(is_lucky_number)
+        XCTAssertNotNil(is_lucky_number)
 
         //SHOULD RETURN FALSE HEREi so this pass
         XCTAssert(is_lucky_number == false)
