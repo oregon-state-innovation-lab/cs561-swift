@@ -1,0 +1,60 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: Swift
+
+on:
+  push:
+    branches:
+      -"qiranshen/add_test"
+      -"main"
+  pull_request:
+    branches: 
+      -"qiranshen/add_test"
+      -"main"
+  workflow_dispatch:
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+        swift-version: ["5.7"]
+    steps:
+    - name: Set up Node JS ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - working-directory: MockServer  
+      run: npm ci
+    
+    - name: Npm install 
+      working-directory: MockServer
+      run: npm install
+    
+    - name: Npm build 
+      working-directory: MockServer
+      run: npm run build --if-present
+    
+    - working-directory: MockServer
+      run: npm test
+    
+    - name: Start Server
+      working-directory: MockServer
+      run: node server.js &
+    
+    - name: Test Server With Curl
+      working-directory: MockServer
+      run: curl "http://localhost:7878/data/2.5/weather"
+    
+    - uses: actions/checkout@v3
+    
+    - name: Build
+      working-directory: MyLibrary
+      run: swift build -v
+    
+    - name: Run tests
+      working-directory: MyLibrary
+      run: swift test --enable-code-coverage
