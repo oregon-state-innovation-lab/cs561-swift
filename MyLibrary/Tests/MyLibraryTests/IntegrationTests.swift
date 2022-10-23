@@ -25,7 +25,7 @@ final class IntegrationTests: XCTestCase {
 
         //Then
         XCTAssertNotNil(temperatureCorvallis)
-        XCTAssertEqual(temperatureCorvallis,62)
+        XCTAssertEqual(temperatureCorvallis,293)
         
     }
           
