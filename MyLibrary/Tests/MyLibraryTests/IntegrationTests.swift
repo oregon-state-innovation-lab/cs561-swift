@@ -18,7 +18,6 @@ final class IntegrationTests: XCTestCase {
 
     func testWeatherServiceMockData()  async throws{
         let my_service = WeatherServiceImpl()
-
         //When
         let temperatureCorvallis = try await my_service.getTemperature()
 
