@@ -10,7 +10,8 @@ final class IntegrationTests: XCTestCase {
         let temp = try await WeatherService.getTemperature()
         
         // Then
-        XCTAssertEqual(temp,287)
+        XCTAssertEqual(temp,286)
     }
 
 }
+
