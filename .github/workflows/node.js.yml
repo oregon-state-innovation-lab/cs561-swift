@@ -13,7 +13,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: cs561-swift-1/mockserver/package-lock.json
+        working-directory: 'mockserver/package-lock.json'
     runs-on: ubuntu-latest
 
     strategy:
