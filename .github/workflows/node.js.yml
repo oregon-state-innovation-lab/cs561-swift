@@ -13,8 +13,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: 'cs561-swift-1/mockserver/'
-
+        working-directory: ./mockserver
     runs-on: ubuntu-latest
 
     strategy:
