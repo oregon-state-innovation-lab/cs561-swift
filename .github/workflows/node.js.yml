@@ -11,6 +11,9 @@ on:
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: 'mockserver'
 
     runs-on: ubuntu-latest
 
