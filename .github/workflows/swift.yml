@@ -1,0 +1,47 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: Swift
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
+      steps:
+        - uses: actions/checkout@v1
+        - name: Set up Python ${{ matrix.python-version }}
+          uses: actions/setup-python@v1
+          with:
+            python-version: ${{ matrix.python-version }}
+        - name: Install dependencies
+          run: |
+            set -ex
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt install ./google-chrome-stable_current_amd64.deb        
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+            pip install msedge-selenium-tools
+    - uses: nanasess/setup-chromedriver@v1
+    - run: chromedriver --url-base=/wd/hub &        
+    - name: Run local server
+      run: |
+        cd sources/MyLibrary/
+        python mockserver.py &
+        sleep 5
+        cd ..
+        pip install -r tests/Requirements.txt
+        python -m pytest -U http://localhost:port/ --browser headless-chrome
+
