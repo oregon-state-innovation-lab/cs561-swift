@@ -5,7 +5,7 @@ public protocol WeatherService {
 }
 
 class WeatherServiceImpl: WeatherService {
-    let url = "https://api.openweathermap.org/data/2.5/weather?q=corvallis&units=imperial&appid=0d4c3c05756767f0202df9dd82e9d402"
+    let url = "https://mockserver561.herokuapp.com/"
 
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
