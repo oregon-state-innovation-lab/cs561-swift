@@ -12,7 +12,6 @@ final class IntegrationTests: XCTestCase {
         //Then
         XCTAssertNotNil(temperatureCorvallis)
         XCTAssert((temperatureCorvallis as Any)is Int)
-        
 
     }
 
