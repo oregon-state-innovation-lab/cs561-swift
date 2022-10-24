@@ -22,6 +22,8 @@ jobs:
           cd MyLibrary
           swift build -v
     - name: Run tests
+    
       run:
         cd MyLibrary
-        swift test -v
+        run 
+        swift test MyLibraryTests -v
