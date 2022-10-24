@@ -30,7 +30,7 @@ jobs:
             pip install msedge-selenium-tools
     - uses: nanasess/setup-chromedriver@v1
     - run: chromedriver --url-base=/wd/hub &        
-    - name: Run local server
+    - name: Run http://127.0.0.1:3000/
       run: |
         cd sources/MyLibrary/
         python mockserver.py &
