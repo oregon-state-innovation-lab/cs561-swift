@@ -17,6 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
+      working-directory : ./MyLibrary
       run: swift build -v
     - name: Run tests
+      working-directory : ./MyLibrary
       run: swift test -v
