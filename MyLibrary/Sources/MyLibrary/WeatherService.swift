@@ -9,7 +9,7 @@ enum BaseUrl : String {
 
 }
 class WeatherServiceImpl: WeatherService {
-    let url = "http://localhost:3000/data/2.5/weather"
+    let url = "https://20360a30-59c2-4760-a55a-128fbe6fb320.mock.pstmn.io/data/2.5/weather"
 
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
