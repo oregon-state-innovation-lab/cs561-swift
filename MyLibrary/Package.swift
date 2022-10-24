@@ -29,8 +29,6 @@ let package = Package(
         .testTarget(
             name: "MyLibraryTests",
             dependencies: ["MyLibrary"],
-            resources:[
-                .process("data.json")
-            ]),
+            resources:[.process("data.json")]),
     ]
 )
