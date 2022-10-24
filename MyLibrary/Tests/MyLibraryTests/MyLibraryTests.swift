@@ -93,5 +93,16 @@ final class MyLibraryTests: XCTestCase {
         XCTAssert(weather.main.temp == 69.4)
         
     }
+    
+    func testIntegration() async throws {
+        //Given
+        let myMockServer = WeatherServiceImpl()
+        
+        //When
+        let temp = try await myMockServer.getTemperature()
+        
+        //Then
+        XCTAssertEqual(temp, 286)
+    }
 
 }
