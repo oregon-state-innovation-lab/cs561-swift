@@ -74,7 +74,7 @@ final class MyLibraryTests: XCTestCase {
         let jsonString = """
         {
             "main" : {
-                "temp" : 0.3
+                "temp" : 0.4
             }
         
         }
@@ -88,7 +88,7 @@ final class MyLibraryTests: XCTestCase {
         let weather = try decoder.decode(Weather.self, from: jsonData)
 
         // Then
-        XCTAssertEqual(weather.main.temp,0.3)
+        XCTAssertEqual(weather.main.temp,0.4)
     }
 
 }
