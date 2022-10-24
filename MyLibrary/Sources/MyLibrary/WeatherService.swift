@@ -4,9 +4,9 @@ public protocol WeatherService {
     func getTemperature() async throws -> Int
 }
 
-class WeatherServiceImpl: WeatherService {
-    let url = "https://api.openweathermap.org/data/2.5/weather?q=corvallis&units=imperial&appid=cf87a21878636ecea226421638ff8ef9cd"
 
+class WeatherServiceImpl: WeatherService {
+    let url ="https://malinics561.herokuapp.com"
     func getTemperature() async throws -> Int {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get).validate(statusCode: 200..<300).responseDecodable(of: Weather.self) { response in

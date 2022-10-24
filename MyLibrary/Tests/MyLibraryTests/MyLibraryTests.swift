@@ -11,7 +11,7 @@ func Integrationtest1() async throws{
     //when
     let temperature = try await weatherserv.getTemperature()
     //then
-    XCTAssertEqual(temperature,61)
+    XCTAssertEqual(temperature,55)
 }
 func Integrationtest2() async throws{
     //given
@@ -78,9 +78,7 @@ final class MyLibraryTests: XCTestCase {
             shouldSucceed: true,
             shouldReturnTemperatureWithAnEight: true
         )
-
         let myLibrary = MyLibrary(weatherService: mockWeatherService)
-
         // When
         let isLuckyNumber = await myLibrary.isLucky(0)
 
